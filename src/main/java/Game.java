@@ -4,29 +4,31 @@ public class Game {
     public static HashMap<String, Integer> cardValue;
 
     public static void main(String[] args) {
-        //helper method just to calculate scores in each round;
+        // Helper method just to calculate scores in each round;
         createMap();
 
-        //create new deck of cards
+        // Create new deck of cards
         DeckOfCards myDeckOfCards = new DeckOfCards();
-        // place Cards in random order
+        // Place Cards in random order
         myDeckOfCards.shuffle();
 
+        // Create Players
         Player player1 = new Player("Omri");
         Player player2 = new Player("Tomer");
+        int playerCount = 2; // count all the players manually
 
-        //deal the cards
-        for (int i = 0; i < 26; i++) {
+        // Deal the cards
+        for (int i = 0; i < 52 /playerCount; i++) {
             player1.addCard(myDeckOfCards.dealCard().toString());
             player2.addCard(myDeckOfCards.dealCard().toString());
         }
 
-        //Fight till the end
-        for (int i = 0; i < 26; i++) {
+        // Fight till the end
+        for (int i = 0; i < 52 /playerCount; i++) {
             gameStep(player1, player2);
         }
 
-        //show scores
+        // Show scores
         System.out.println(player1.name + " score: " + player1.score);
         System.out.println(player2.name + " score: " + player2.score);
 
@@ -56,8 +58,9 @@ public class Game {
         }
         return stepWinner + " Won!!!";
     }
+
     private static void createMap() {
-        cardValue = new HashMap<String, Integer>();
+        cardValue = new HashMap<>();
         cardValue.put("Ace", 14);
         cardValue.put("King", 13);
         cardValue.put("Queen", 12);
