@@ -21,7 +21,7 @@ public class Game {
             player2.addCard(myDeckOfCards.dealCard().toString());
         }
 
-        //game step
+        //Fight till the end
         for (int i = 0; i < 26; i++) {
             gameStep(player1, player2);
         }
@@ -33,12 +33,18 @@ public class Game {
     }
 
     public static void gameStep(Player player1, Player player2) {
+
+        String stepWinner = gameLogic(player1, player2);
+        System.out.println(stepWinner);
+        System.out.println(" ----------- ----------- ");
+    }
+
+    private static String gameLogic(Player player1, Player player2){
         String card1 = player1.getNextCard();
         String card2 = player2.getNextCard();
 
         System.out.println(player1.name + ": " + card1);
         System.out.println(player2.name + ": " + card2);
-
         String stepWinner = "Nobody ";
         if(cardValue.get(card1.split(" ")[0]) >  cardValue.get(card2.split(" ")[0]) ) {
             player1.addScore();
@@ -48,12 +54,8 @@ public class Game {
             player2.addScore();
             stepWinner = player2.name;
         }
-
-        System.out.println(stepWinner + " Won!!!");
-
-        System.out.println(" ----------- ----------- ");
+        return stepWinner + " Won!!!";
     }
-
     private static void createMap() {
         cardValue = new HashMap<String, Integer>();
         cardValue.put("Ace", 14);
