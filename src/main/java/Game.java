@@ -4,31 +4,32 @@ public class Game {
     public static HashMap<String, Integer> cardValue;
 
     public static void main(String[] args) {
-        // Helper method just to calculate scores in each round;
+        // Helper method just to calculate scores in each round.
         createMap();
 
-        // Create new deck of cards
+        // Create new deck of cards.
         DeckOfCards myDeckOfCards = new DeckOfCards();
-        // Place Cards in random order
+
+        // Place Cards in random order.
         myDeckOfCards.shuffle();
 
-        // Create Players
+        // Create Players.
         Player player1 = new Player("Omri");
         Player player2 = new Player("Tomer");
         int playerCount = 2; // count all the players manually
 
-        // Deal the cards
+        // Deal the cards.
         for (int i = 0; i < 52 /playerCount; i++) {
             player1.addCard(myDeckOfCards.dealCard().toString());
             player2.addCard(myDeckOfCards.dealCard().toString());
         }
 
-        // Fight till the end
+        // Fight till the end.
         for (int i = 0; i < 52 /playerCount; i++) {
             gameStep(player1, player2);
         }
 
-        // Show scores
+        // Show scores.
         System.out.println(player1.name + " score: " + player1.score);
         System.out.println(player2.name + " score: " + player2.score);
 
@@ -48,10 +49,13 @@ public class Game {
         System.out.println(player1.name + ": " + card1);
         System.out.println(player2.name + ": " + card2);
         String stepWinner = "Nobody ";
+
+        // Only the face (=card value) is being calculated, incase of a tie - nobody won the round.
         if(cardValue.get(card1.split(" ")[0]) >  cardValue.get(card2.split(" ")[0]) ) {
             player1.addScore();
             stepWinner = player1.name;
         }
+
         if(cardValue.get(card1.split(" ")[0]) <  cardValue.get(card2.split(" ")[0]) ) {
             player2.addScore();
             stepWinner = player2.name;
