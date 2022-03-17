@@ -1,17 +1,18 @@
 
+
 public class Card {
-    public final String face;
-    public final String suite;
+    final int face; // face of card (1, 2, 3...)
+    private final String suit; // suit of card ("Hearts", "Diamonds", ...)
 
-
-    public Card(String face, String suite) {
-        this.face = face;
-        this.suite = suite;
+    // two-argument constructor initializes card's face and suit
+    public Card(int cardFace, String cardSuit) {
+        this.face = cardFace; // initialize face of card
+        this.suit = cardSuit; // initialize suit of card
     }
 
+    // return String representation of Card
     public String toString() {
-        return this.face + " of " + this.suite;
+        return face + " of " + suit;
+
     }
-
-
 }

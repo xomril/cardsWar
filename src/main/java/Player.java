@@ -2,26 +2,20 @@ import java.util.ArrayList;
 
 public class Player {
     public final String name;
-    public final ArrayList<String> deck;
-    public int score;
+    public final ArrayList<Card> deck;
 
     public Player(String name){
         this.name = name;
         this.deck = new ArrayList<>();
-        this.score = 0;
     }
 
-    public void addCard(String card){
-        this.deck.add(card);
-    }
-
-    public String getNextCard(){
-        String currentCard = this.deck.get(0);
+    public Card removeCard(){
+        Card currentCard = this.deck.get(0);
         this.deck.remove(0);
         return currentCard;
     }
 
-    public void addScore(){
-        this.score++;
+    public void addCard(Card card){
+        this.deck.add(card);
     }
 }
